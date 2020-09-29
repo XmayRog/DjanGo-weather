@@ -2,7 +2,31 @@
 
 {% block content %}
 
-    <h1>Fuck You !</h1>
+    <h1>Weather Forecast !</h1><br>
 
+    {% if pincode %}
+        {{ pincode }}
+    {% endif %}
+         
+
+    {% if api %}
+        {% if api == "Error..." %}
+           There was an error, Please try again...
+        {% else %}
+            <div class="jumbotron"  >
+                <h1 class="display-4">{{ api.weather.0.description|title }}</h1>
+                
+                <p class="lead">{{ api.name|title }} Weather</p>
+                <p>Temperature = {{ api.main.temp }} &#8451; | Feels like = {{ api.main.feels_like }} &#8451; <br>
+                    Humidity = {{ api.main.humidity }}%<br>
+                    Wind Speed = {{ api.wind.speed }}m/s <br>
+                </p>
+            </div>
+            
+            
+
+        {% endif %}
+
+    {% endif %}
 
 {% endblock %}
